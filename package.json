@@ -1,7 +1,7 @@
 {
   "name": "vue-price-calendar",
   "description": "vue价格日历",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "dongj0316 <475586651@qq.com>",
   "main": "dist/vue-price-calendar.js",
   "license": "MIT",
