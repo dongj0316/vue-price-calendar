@@ -244,6 +244,9 @@ export default {
       left: 0;
       width: 30px;
       height: 100%;
+      &:active {
+        background-color: rgba(0, 0, 0, .2)
+      }
     }
     .prev::before {
       content: ' ';
