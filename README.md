@@ -1,6 +1,6 @@
 # vue-price-calendar
 
-> A Vue.js project
+> vue 价格日历
 
 ## Build Setup
 
