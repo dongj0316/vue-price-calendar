@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import vueSimpleCalendar from './vue-price-calendar/vue-price-calendar'
+import vuePriceCalendar from './vue-price-calendar/vue-price-calendar'
 
 export default {
   name: 'app',
   components: {
-    vueSimpleCalendar
+    vuePriceCalendar
   },
   data () {
     return {

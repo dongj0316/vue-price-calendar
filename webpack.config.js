@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'vue-price-calendar.js',
-    library: 'VueSimpleCalendar',
+    library: 'vuePriceCalendar',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

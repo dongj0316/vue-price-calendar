@@ -1,8 +1,8 @@
-import VueSimpleCalendar from './vue-price-calendar.vue'
+import vuePriceCalendar from './vue-price-calendar.vue'
 
 const comment = {
   install: function (Vue) {
-    Vue.component(VueSimpleCalendar.name, VueSimpleCalendar)
+    Vue.component(vuePriceCalendar.name, vuePriceCalendar)
   }
 }
 
