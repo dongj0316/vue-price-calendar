@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-price-calendar @change="change"></vue-price-calendar>
+    <vue-price-calendar @change="change" @month-change="monthChange"></vue-price-calendar>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
   methods: {
     change (date) {
       console.log(date)
+    },
+    monthChange (month) {
+      console.log(month)
     }
   }
 }

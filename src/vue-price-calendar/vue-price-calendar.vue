@@ -1,5 +1,8 @@
 <template>
   <div class="vue-price-calendar">
+    <div class="month-tip">
+      <span>{{active.substring(0, 4)}} {{viewMonth[+active.split('-')[1] - 1]}}</span>
+    </div>
     <div class="tab">
       <div class="prev" @click="prev"></div>
       <div class="month" v-for="mounth in months" @click="active = mounth" :class="{active: active.substring(0, 7) === mounth.substring(0, 7)}" :key="mounth">
@@ -156,7 +159,7 @@ export default {
   data () {
     return {
       startDate: this.start,
-      active: this.start,
+      active: this.start.substring(0, 8) + '01',
       activeDay: ''
     }
   },
@@ -169,33 +172,26 @@ export default {
       const start = new Date(this.startDate)
       return arr.map(v => addMonth(start, v, '{y}-{m}-{d}'))
     },
-    dates () {
-      const dates = {}
-      this.months.map(month => {
-        const od = new Date(month)
-        // 当月天数
-        const days = getMonthDate(od)
-        // 1号星期几
-        const firstWeek = od.getDay()
-        const str = month.substring(0, 8)
-        // 天、对应的年月日
-        const views = new Array(firstWeek).concat(new Array(days).toString().split(',').map((v, i) => {
-          const day = i + 1
-          return {
-            day: i + 1,
-            date: str + (day < 10 ? '0' + day : day)
-          }
-        }))
-        dates[month] = {
-          days,
-          firstWeek,
-          views
-        }
-      })
-      return dates
-    },
     activeMonth () {
-      return this.dates[this.active.substring(0, 8) + '01'] || this.dates[this.months[0]]
+      const od = new Date(this.active)
+      // 当月天数
+      const days = getMonthDate(od)
+      // 1号星期几
+      const firstWeek = od.getDay()
+      const str = this.active.substring(0, 8)
+      // 天、对应的年月日
+      const views = new Array(firstWeek).concat(new Array(days).toString().split(',').map((v, i) => {
+        const day = i + 1
+        return {
+          day: i + 1,
+          date: str + (day < 10 ? '0' + day : day)
+        }
+      }))
+      return {
+        days,
+        firstWeek,
+        views
+      }
     }
   },
   // created () {
@@ -221,6 +217,9 @@ export default {
         month: newVl.substring(0, 7),
         day: newVl.substring(8)
       })
+    },
+    active (newVl) {
+      this.$emit('month-change', newVl.substring(0, 7))
     }
   }
 }
@@ -230,6 +229,21 @@ export default {
 .vue-price-calendar {
   position: relative;
   overflow: hidden;
+  .month-tip {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    color: rgba(0, 0, 0, .2);
+    > span {
+      transform: rotate(-45deg);
+    }
+  }
   .tab {
     position: relative;
     display: flex;
